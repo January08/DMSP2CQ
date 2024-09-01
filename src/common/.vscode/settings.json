@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "cmath": "cpp",
+        "cstddef": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "cstdint": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "string": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "iosfwd": "cpp",
+        "limits": "cpp",
+        "stdexcept": "cpp"
+    }
+}

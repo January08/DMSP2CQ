@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../lib/libsrc.a CMakeFiles/src.dir/common/functionalities.cpp.o CMakeFiles/src.dir/common/helpers.cpp.o CMakeFiles/src.dir/common/table_opprf.cpp.o CMakeFiles/src.dir/ots/ots.cpp.o
+/usr/bin/ranlib ../lib/libsrc.a
