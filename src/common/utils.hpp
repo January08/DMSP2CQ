@@ -15,7 +15,7 @@ class globalData {
   void add(const T &data, size_t pos) {
     std::lock_guard<std::mutex> lock(m);
     if (pos >= m_Data.size()) {
-      m_Data.resize(pos + 1); // 调整大小以确保 pos 位置有效
+      m_Data.resize(pos + 1); 
     }
     m_Data[pos] = data;
   }
@@ -76,11 +76,8 @@ class globalFlag {
     return tmp;
   }
 };
-
-// 除特定线程，监听 listenFlag，直到为 n，然后由特定线程执行 funcOfSpecial，可执行一些特殊操作
 inline void waitFor(globalFlag& listenFlag,std::function<void(void)> funcOfSpecial,bool condition,size_t n)
 {
-  // 是否为 center
   bool isSpec=condition?true:false;
   
   while(1)
@@ -105,8 +102,6 @@ inline void waitFor(globalFlag& listenFlag,std::function<void(void)> funcOfSpeci
     }
   }
 }
-
-// 除特定线程，监听 listenFlag,若小于2，则进入逻辑，凑齐两个线程，便执行 funcOf1、funcOf2，funcOf1 完成后计数加一，由后者结束
 inline void waitFor2(globalFlag& listenFlag,std::function<void(void)> funcOf1,std::function<void(void)> funcOf2,size_t whoIsEnd,std::function<void(void)> funcOfBegin,std::function<void(void)> funcOfEnd)
 {
   static globalFlag flagOfWait2;
