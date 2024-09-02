@@ -20,8 +20,6 @@
 globalData<ENCRYPTO::PsiAnalyticsContext> clientContexts;
 globalData<ENCRYPTO::PsiAnalyticsContext> serverContexts;
 std::mutex m;
-
-// 线程等待开始计数
 globalFlag flagOfWait;
 
 auto read_test_options(int32_t argcp, char **argvp) {
@@ -84,10 +82,8 @@ auto read_test_options(int32_t argcp, char **argvp) {
   return context;
 }
 
-// 服务端、客户端线程函数
 void thread(ENCRYPTO::PsiAnalyticsContext context,std::vector<uint64_t> inputs)
 {
-  // 创建套接字
   std::unique_ptr<CSocket> sock=ENCRYPTO::EstablishConnection(context.address, context.port, static_cast<e_role>(context.role));
 
   sci::NetIO* ioArr[2];
@@ -229,7 +225,6 @@ ENCRYPTO::PsiAnalyticsContext average(const std::vector<ENCRYPTO::PsiAnalyticsCo
 
   if(context.psm_type!=context.PSM3)
   {
-    // 第一次 oprf 取平均值，第二次取 center 线程的
     context.timings.oprf1=context.timings.oprf1/(context.n-1);
     context.timings.oprf2=contexts[context.n-1].timings.oprf2;
 
@@ -244,8 +239,6 @@ ENCRYPTO::PsiAnalyticsContext average(const std::vector<ENCRYPTO::PsiAnalyticsCo
     context.timings.base_ots_sci=context.timings.base_ots_sci/context.n;
     // std::cout<<"base_ots_sci time is "<<context.timings.base_ots_sci<<std::endl;
     // std::cout << "contexts[n-1].base ot time: " << contexts[context.n - 1].timings.base_ots_libote<<"\n"<<std::endl;
-
-    // 总时长取 leader 线程
     context.timings.psm = contexts[0].timings.psm;
     context.timings.total=contexts[0].timings.total;
     context.timings.addtime=contexts[0].timings.addtime;
@@ -272,7 +265,7 @@ int main(int argc, char **argv) {
   if(context.role == CLIENT) {
     if (context.psm_type!=context.PSM3)
     {
-      for (int i = 0; i < context.cneles; i++) {//这里记得修改，跑协议2的时候
+      for (int i = 0; i < context.cneles; i++) {
       inputs.push_back(8000);
     }
     } else if (context.psm_type==context.PSM3) {
@@ -292,11 +285,7 @@ int main(int argc, char **argv) {
       inputs.push_back(i);
     }
   }
-
-  // 创建 n 个线程
   std::thread* threads[context.n];
-
-  // 服务端或客户端序列，客户端连接到选定的 server_sequence，也就是端口序列，服务端默认是按 0-n 的顺序创建套接字
   std::vector<size_t> client_sequence;
   std::vector<size_t> server_sequence;
 
