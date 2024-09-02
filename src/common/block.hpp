@@ -4,16 +4,11 @@
 #include <vector>
 #include "HashingTables/simple_hashing/simple_hashing.h"
 
-// 将 block 数据异或转化为 uint64_t
 inline std::vector<uint64_t> blockToUint64Xor(const osuCrypto::block& b) {
-  // 提取 block 的低64位和高64位
   uint64_t low = _mm_extract_epi64(b, 0);
   uint64_t high = _mm_extract_epi64(b, 1);
 
-  // 计算高64位和低64位的异或
   uint64_t xor_result = high ^ low;
-
-  // 返回包含异或结果的向量
   return std::vector<uint64_t>{xor_result};
 }
 
