@@ -5,7 +5,7 @@
 #include <NTL/ZZ.h>
 #include <iostream>
 
-// 判断文件是否存在
+
 inline bool fileExists(const std::string& filename)
 {
   std::ifstream file(filename);
@@ -15,7 +15,7 @@ inline bool fileExists(const std::string& filename)
 template<class T=uint64_t>
 inline void writeToCSV(const std::vector<std::vector<T>>& data, const std::string& filename)
 {
-    std::ofstream file(filename);  // 创建并打开文件
+    std::ofstream file(filename);  
 
     if (!file.is_open()) {
         std::cerr << "Failed to open file: " << filename << std::endl;
@@ -25,12 +25,12 @@ inline void writeToCSV(const std::vector<std::vector<T>>& data, const std::strin
     for (const auto& row : data) {
         for (size_t i = 0; i < row.size(); ++i) {
             file << row[i];
-            if (i < row.size() - 1) file << ",";  // 不在行的最后一个元素后面加逗号
+            if (i < row.size() - 1) file << ",";  
         }
-        file << "\n";  // 每行结束后换行
+        file << "\n"; 
     }
 
-    file.close();  // 关闭文件
+    file.close(); 
 }
 
 inline std::vector<std::vector<NTL::ZZ>> readZZFromCSV(const std::string& filename)
