@@ -11,10 +11,10 @@ class VRF {
   struct Node {
     size_t id;
     std::string signature;
-    std::string timestamp;  // 存储时间戳用于验证
+    std::string timestamp; 
     int hash_value;
     EVP_PKEY *public_key;
-    bool verify_result;  // 存储签名验证结果
+    bool verify_result; 
   };
 
  public:
@@ -33,7 +33,7 @@ class VRF {
       EVP_PKEY_keygen(pctx, &pkey);
       nodes[i].public_key = pkey;
 
-      nodes[i].timestamp = std::to_string(std::time(0));  // 使用时间戳作为消息
+      nodes[i].timestamp = std::to_string(std::time(0));  
 
       EVP_MD_CTX *mdctx = EVP_MD_CTX_new();
       unsigned char sig[256];
@@ -45,7 +45,7 @@ class VRF {
 
       nodes[i].hash_value = hash_signature(nodes[i].signature);
 
-      // 验证签名
+
       EVP_MD_CTX *vctx = EVP_MD_CTX_new();
       EVP_VerifyInit(vctx, EVP_sha256());
       EVP_VerifyUpdate(vctx, nodes[i].timestamp.c_str(), nodes[i].timestamp.size());
@@ -63,7 +63,7 @@ class VRF {
 
     for (size_t i = 0; i < n; i++) seq.push_back(nodes[i].id);
 
-    // // 输出排序后的节点信息
+
     // for (const auto &node : nodes)
     // {
     //     std::cout << node.id << ": Signature = " << node.signature
