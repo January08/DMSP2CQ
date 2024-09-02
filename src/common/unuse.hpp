@@ -13,7 +13,6 @@
 
 uint64_t firstBlock(const osuCrypto::block& b)
 {
-  // 将 __m128i 类型的值强制转换为 u64 类型数组
   uint64_t values[2];
   _mm_storeu_si128((__m128i*)values, b);
   return values[0];
@@ -21,7 +20,6 @@ uint64_t firstBlock(const osuCrypto::block& b)
 
 uint64_t secondBlock(const osuCrypto::block& b)
 {
-  // 将 __m128i 类型的值强制转换为 u64 类型数组
   uint64_t values[2];
   _mm_storeu_si128((__m128i*)values, b);
   return values[1];
