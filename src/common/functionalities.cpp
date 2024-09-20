@@ -41,7 +41,6 @@
 
 namespace ENCRYPTO {  
 
-// 二维数组扁平化处理成一维
 template<class T>
 std::vector<T> flatten(const std::vector<std::vector<T>>& data) {
     std::vector<T> flat;
@@ -242,7 +241,6 @@ void run_circuit_psi(const std::vector<std::uint64_t> &inputs, PsiAnalyticsConte
     }
     waitFor(Cf1,[&]()
     {
-      // 将 center 的 id 存入 clientID
       clientID.add(simulated_simple_table_1,context.index);
     },isCenter,context.n-1);
     if(isCenter)
