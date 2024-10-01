@@ -172,7 +172,7 @@ int keyOfShared;
 
 // #define DEBUG
 
-void run_circuit_psi(const std::vector<std::uint64_t> &inputs, PsiAnalyticsContext &context, std::unique_ptr<CSocket> &sock,osuCrypto::Channel &chl)
+void run_circuit_dmsp2cq(const std::vector<std::uint64_t> &inputs, PsiAnalyticsContext &context, std::unique_ptr<CSocket> &sock,osuCrypto::Channel &chl)
 {
   Timer totalTime;
   Timer psmTime;
@@ -592,7 +592,7 @@ void run_circuit_psi(const std::vector<std::uint64_t> &inputs, PsiAnalyticsConte
   context.timings.total=totalTime.end();
 }
 
-void run_circuit_psi3(const std::vector<std::uint64_t> &inputs, PsiAnalyticsContext &context, std::unique_ptr<CSocket> &sock,
+void run_circuit_dmsp2cq3(const std::vector<std::uint64_t> &inputs, PsiAnalyticsContext &context, std::unique_ptr<CSocket> &sock,
   sci::NetIO* ioArr[2], osuCrypto::Channel &chl)
 {
   Timer totalTime;
