@@ -37,7 +37,7 @@ inline std::vector<std::vector<NTL::ZZ>> readZZFromCSV(const std::string& filena
 {
   std::vector<std::vector<NTL::ZZ>> data;
 
-  std::ifstream file(filename);  // 打开文件
+  std::ifstream file(filename);  
 
   if (!file.is_open()) {
       std::cerr << "Failed to open file: " << filename << std::endl;
@@ -58,7 +58,7 @@ inline std::vector<std::vector<NTL::ZZ>> readZZFromCSV(const std::string& filena
       data.push_back(row);
   }
 
-  file.close();  // 关闭文件
+  file.close();  
 
   return data;
 }
