@@ -59,7 +59,7 @@ target_include_directories(src PUBLIC
         )
 
 if (PSI_ANALYTICS_BUILD_EXAMPLE)
-    add_executable(gcf_p2cq circuit_psi.cpp)
+    add_executable(gcf_p2cq circuit_dmsp2cq.cpp)
 
     target_link_libraries(gcf_p2cq PUBLIC
             src
